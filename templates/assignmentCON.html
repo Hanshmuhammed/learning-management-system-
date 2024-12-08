@@ -1,0 +1,21 @@
+<div class="assignment-container">
+    <h1>Assignments</h1>
+
+    
+    
+    <div class="assignment-card">
+        <h2> assignment.title</h2>
+        <p><strong>Course:</strong>course</p>
+        <p><strong>Description:</strong>description</p>
+        <p><strong>Deadline:</strong>deadline|date</p>
+
+        <!-- Submission form -->
+        <form method="post" enctype="multipart/form-data" action="">
+            {% csrf_token %}
+            <label for="file">Upload File:</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+  
+</div>

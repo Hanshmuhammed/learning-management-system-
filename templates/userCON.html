@@ -1,0 +1,60 @@
+{% load static %}
+<div class="auth-page">
+    <div class="container">
+        {% for message in messages %}
+        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        <div class="form-container">
+            <div class="form-tab">
+                <button id="login-tab" class="active-tab" onclick="showLogin()">Login</button>
+                <button id="register-tab" onclick="showRegister()">Register</button>
+            </div>
+            <div id="login-form" class="form-content">
+                <h2>Login</h2>
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <button type="submit" name="login">Login</button>
+                </form>
+            </div>
+            <div id="register-form" class="form-content hidden">
+                <h2>Register</h2>
+                <form  id="RegForm" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password1" placeholder="Password" required>
+                    <input type="password" name="password2" placeholder="Confirm Password" required>
+                     
+                    <label for="role">Role:</label>
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+
+
+                    <button type="submit" name="register">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showLogin() {
+        document.getElementById("login-form").classList.remove("hidden");
+        document.getElementById("register-form").classList.add("hidden");
+        document.getElementById("login-tab").classList.add("active-tab");
+        document.getElementById("register-tab").classList.remove("active-tab");
+    }
+
+    function showRegister() {
+        document.getElementById("register-form").classList.remove("hidden");
+        document.getElementById("login-form").classList.add("hidden");
+        document.getElementById("register-tab").classList.add("active-tab");
+        document.getElementById("login-tab").classList.remove("active-tab");
+    }
+</script>
